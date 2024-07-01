@@ -188,3 +188,18 @@ function cl_get_admin_pinned_post() {
         return false;
     }
 }
+
+function cl_get_admin_pinned_post() {
+    global $db;
+
+    $db = $db->where("admin_pinned", "Y");
+    $qr = $db->getOne(T_PUBS);
+
+    if (cl_queryset($qr)) {
+        return cl_post_data($qr);
+    }
+
+    else{
+        return false;
+    }
+}
